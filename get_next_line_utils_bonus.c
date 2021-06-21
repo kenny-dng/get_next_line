@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 11:11:10 by chduong           #+#    #+#             */
-/*   Updated: 2021/06/19 15:33:13 by chduong          ###   ########.fr       */
+/*   Updated: 2021/06/19 14:29:07 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*save_join(char *save, char *buff)
 		++buff;
 	}
 	newsave[i] = 0;
-	if (save)
-		free(save);
+	free(save);
 	return (newsave);
 }
