@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 11:07:09 by chduong           #+#    #+#             */
-/*   Updated: 2021/06/19 14:29:47 by chduong          ###   ########.fr       */
+/*   Updated: 2021/06/22 19:31:01 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 static int	newline(char *s)
@@ -94,17 +94,20 @@ static char	*get_line(char *s)
 int	get_next_line(int fd, char **line)
 {
 	int			output;
-	static char	*save;
+	static char	*save[1024];
 
 	if (BUFFER_SIZE <= 0 || !line || fd < 0)
 		return (-1);
 	output = 1;
-	if (!save || newline(save) < 0)
-		output = stock_buff(fd, &save);
+	if (!save[fd] || newline(save[fd]) < 0)
+		output = stock_buff(fd, &save[fd]);
 	if (output > -1)
-		*line = get_line(save);
-	if (output == 0 && save)
-		free(save);
+		*line = get_line(save[fd]);
+	if (output == 0 && save[fd])
+	{
+		free(save[fd]);
+		save[fd] = NULL;
+	}
 	if (!*line)
 		return (-1);
 	return (output);

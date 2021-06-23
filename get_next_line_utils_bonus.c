@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 11:11:10 by chduong           #+#    #+#             */
-/*   Updated: 2021/06/19 14:29:07 by chduong          ###   ########.fr       */
+/*   Updated: 2021/06/21 19:26:14 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *s)
 {
@@ -46,6 +46,7 @@ char	*save_join(char *save, char *buff)
 		++buff;
 	}
 	newsave[i] = 0;
-	free(save);
+	if (save)
+		free(save);
 	return (newsave);
 }

@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 11:07:09 by chduong           #+#    #+#             */
-/*   Updated: 2021/06/19 14:29:47 by chduong          ###   ########.fr       */
+/*   Updated: 2021/06/22 19:22:16 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ static void	save_rest(char *s)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = newline(s);
 	j = 0;
-	while (s[i] && s[i] != '\n')
-		++i;
-	++i;
-	while (s[i])
-		s[j++] = s[i++];
-	s[j] = 0;
+	if (i >= 0)
+	{
+		++i; 
+		while (s[i])
+			s[j++] = s[i++];
+		s[j] = 0;
+	}
 }
 
 static char	*get_line(char *s)
@@ -95,8 +96,8 @@ int	get_next_line(int fd, char **line)
 {
 	int			output;
 	static char	*save;
-
-	if (BUFFER_SIZE <= 0 || !line || fd < 0)
+	
+	if (BUFFER_SIZE <= 0 || !line || fd < 0 || read(fd, NULL, 0) == -1)
 		return (-1);
 	output = 1;
 	if (!save || newline(save) < 0)
@@ -104,7 +105,10 @@ int	get_next_line(int fd, char **line)
 	if (output > -1)
 		*line = get_line(save);
 	if (output == 0 && save)
+	{
 		free(save);
+		save = NULL;
+	}
 	if (!*line)
 		return (-1);
 	return (output);

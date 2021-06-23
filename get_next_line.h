@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 11:11:46 by chduong           #+#    #+#             */
-/*   Updated: 2021/06/21 15:15:31 by chduong          ###   ########.fr       */
+/*   Updated: 2021/06/22 17:17:08 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 3
 # endif
 
 size_t	ft_strlen( char *s);
