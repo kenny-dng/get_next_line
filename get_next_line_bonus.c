@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 11:07:09 by chduong           #+#    #+#             */
-/*   Updated: 2021/06/22 19:31:01 by chduong          ###   ########.fr       */
+/*   Updated: 2021/06/23 15:58:24 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	get_next_line(int fd, char **line)
 	int			output;
 	static char	*save[1024];
 
-	if (BUFFER_SIZE <= 0 || !line || fd < 0)
+	if (BUFFER_SIZE <= 0 || !line || fd < 0 || read(fd, NULL, 0) == -1)
 		return (-1);
 	output = 1;
 	if (!save[fd] || newline(save[fd]) < 0)
