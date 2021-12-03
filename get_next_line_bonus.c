@@ -6,7 +6,7 @@
 /*   By: chduong <chduong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 11:07:09 by chduong           #+#    #+#             */
-/*   Updated: 2021/06/23 15:58:24 by chduong          ###   ########.fr       */
+/*   Updated: 2021/12/03 16:59:45 by chduong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ int	get_next_line(int fd, char **line)
 	if (!save[fd] || newline(save[fd]) < 0)
 		output = stock_buff(fd, &save[fd]);
 	if (output > -1)
-		*line = get_line(save[fd]);
-	if (output == 0 && save[fd])
 	{
-		free(save[fd]);
-		save[fd] = NULL;
+		free(*line);
+		*line = get_line(save[fd]);
 	}
+	if (output == 0 && save[fd])
+		free(save[fd]);
 	if (!*line)
 		return (-1);
 	return (output);
