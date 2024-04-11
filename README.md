@@ -6,7 +6,7 @@
 
 The aim of this project is to make you code a function that returns a line, read from a file descriptor._
 
-For more detailed information, look at the [**subject of this project**](https://github.com/jdecorte-be/42-Get-next-line/blob/master/en.subject.pdf).
+For more detailed information, look at the **subject of this project**
 
 ## 🛠️ Usage
 
